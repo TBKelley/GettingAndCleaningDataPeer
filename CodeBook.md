@@ -1,21 +1,19 @@
-# TidyData1.txt #
+# TidyData.txt #
 
 Mean values of "-mean", "-std" feature measurments by "Activity".
-
-This document describes the variables, the data, and any transformations or work that you performed 
-to clean up the data from "UCI HAR Dataset" X_test.txt, Y_test.TXT, X_train.txt, Y_train.TXT into TidyData.txt
 
 Details of the meaning of each measurement can be found in features_info.txt
 
 ## File Format ##
 
-TidyData1.txt is a comma separated file, easily read by R and Excel.
+TidyData.txt is a comma separated file, easily read by R and Excel.
 
 ## Column Variable ##
 
 Each feature is the mean of the raw values grouped over Activity.
 
 Activity : "LAYING", "SITTING", "STANDING", "WALKING", "WALKING_DOWNSTAIRS", "WALKING_UPSTAIRS"
+SubjectID: From subject_train.txt and subject_test.txt
 tBodyAcc-mean()-X
 tBodyAcc-mean()-Y
 tBodyAcc-mean()-Z
@@ -89,37 +87,34 @@ NOTE: No missing values were found.
 
 Only mean and standard deviation measurments have been selected from the combined raw X_test.txt, Y_test.TXT, X_train.txt, Y_train.TXT files.
 
-Y_train.TXT + X_train.txt
-Y_test.TXT  + X_test.txt
+Y_train.TXT + subject_train.txt + X_train.txt
+Y_test.TXT  + subject_test.txt + X_test.txt
 
 All files were appended into a full data frame.
-A mean of "measurment features" are taken over "Activity".
 
-Some manipulation was required to convert named lists back to a data.frame.
-the "lapply" over the split() data had to be transposed to make row names into a data frame column.
+activity_labels.txt is used to convert activity ID in Y_train.TXT/Y_test.TXT to a descriptive factors "Activity" column.
+"SubjectID" is the column header for subject_train.txt/subject_test.txt
+features_info.txt is used to provide descriptive header labels to each measurment feature.
 
-The final summary data.frame 6*67 was saved as a CSV file.
-
-
+The clean data.frame 10299*68 was saved as a CSV file TidyData.txt.
 
 
-# TidyData2.txt #
+# Averages.txt #
 
-Mean values of "-mean", "-std" feature measurments by "Activity", "SubjectID".
-
-This document describes the variables, the data, and any transformations or work that you performed 
-to clean up the data from "UCI HAR Dataset" X_test.txt, Y_test.TXT, X_train.txt, Y_train.TXT into TidyData.txt
+Average values of "-mean", "-std" feature measurments by "Activity", "SubjectID".
 
 Details of the meaning of each measurement can be found in features_info.txt
 
 
 ## File Format ##
 
-TidyData2.txt is a comma separated file, easily read by R and Excel.
+Averages.txt is a comma separated file, easily read by R and Excel.
 
 ## Column Variable ##
 
-Each feature is the mean of the raw values grouped over Activity.
+Each feature is the average of the raw values grouped over "Activity", "SubjectID".
+The column names have not been changed, as the file name specifies all features are averages.
+It was considered using column names like "avg(tBodyAcc-mean()-X)".
 
 Activity : "LAYING", "SITTING", "STANDING", "WALKING", "WALKING_DOWNSTAIRS", "WALKING_UPSTAIRS"
 SubjectID : Subject ID from subject_train.txt, subject_test.txt
@@ -196,11 +191,11 @@ NOTE: No missing values were found.
 
 Only mean and standard deviation measurments have been selected from the combined raw Y_test.TXT, subject_test.txt, X_test.txt, Y_train.TXT, subject_train.txt, X_train.txt files.
 
-Y_train.TXT + subject_test.txt + X_train.txt
-Y_test.TXT  + subject_train.txt + X_test.txt
+Y_train.TXT + subject_train.txt + X_train.txt
+Y_test.TXT  + subject_test.txt + X_test.txt
 
 All files were appended into a full data frame.
-A mean of "measurment features" are taken over "Activity","SubjectID".
+An average of "measurment features" are taken over "Activity","SubjectID".
 
 Some manipulation was required to convert named lists back to a data.frame.
 the "lapply" over the split() data had to be transposed to make row names into a data frame column.
@@ -208,4 +203,4 @@ the "lapply" over the split() data had to be transposed to make row names into a
 Issues were encountered to split on two columns. A new combined factor column "Activity.SubjectID" had to be created.
 Other issues were encountered splitting "Activity.SubjectID" back to a character "Activity" column and integer "SubjectID" column, required for proper sorting.
 
-The final summary data.frame 6*68 was saved as a CSV file.
+The final summary data.frame 180*68 was saved as a CSV file "Averages.txt".
