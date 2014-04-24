@@ -26,16 +26,25 @@ run_analysis.R
   |    |
   |    +-> GetFileUNC.R
   |
+  +-> GetSubjectIDDataFrame.R
+  |    |
+  |    +-> GetFileUNC.R
+  |
   +-> MyUnsplit.R
 
 ## run_analysis.R ##
 
 Main controller.
-1. Get preprocessed data frame dfTestX, dfTestY, dfTrainX, dfTrainY
-2. Merge  Columns in dfTest<-cbind(dfTestY, dfTestX) and dfTrain<-cbind(dfTrainY, dfTrainX)
+1. Get preprocessed data frame dfTestX, dfTestY, dfTestSubjectID, dfTrainX, dfTrainY, dfTrainSubjectID
+2. Merge  Columns in dfTest<-cbind(dfTestY, dfTestSubjectID, dfTestX) and dfTrain<-cbind(dfTrainY, dfTrainSubjectID, dfTrainX)
 3. Merge  Rows in df <- rbind(dfTest,dfTrain)
-4. dfTidyData <- Group df by activity or mean of means and sd.
-5. Creates a CSV file "./TidyData.txt". Mean of feature values grouped by activity.
+4. dfTidyData1 <- Group df by "Activity" or mean of "-means" and "-std" measuerment features.
+5. Creates a CSV file "./TidyData1.txt". Mean of feature values grouped by "Activity".
+
+6. dfTidyData2 <- Group df by "Activity", "SubjectID" or mean of "-means" and "-std" measuerment features.
+7. Convert "Activity" to character and "SubjectID" to integer for sorting results.
+8. Creates a CSV file "./TidyData2.txt". Mean of feature values grouped by "Activity", "SubjectID".
+ 
 
 ## GetXDataFrame.R ##
 

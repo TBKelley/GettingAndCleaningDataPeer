@@ -6,7 +6,7 @@
 ##              Example: "./UCI HAR Dataset"
 ## dataType:    Type of data. Example: "test" or "train"
 ##
-## Returns Data Frame with teh following columns:
+## Returns Data Frame with the following columns:
 # 1 tBodyAcc-mean()-X
 # 2 tBodyAcc-mean()-Y
 # 3 tBodyAcc-mean()-Z
@@ -73,6 +73,7 @@
 # 530 fBodyBodyGyroMag-std()
 # 542 fBodyBodyGyroJerkMag-mean()
 # 543 fBodyBodyGyroJerkMag-std()
+
 source("GetFeatureName.R")
 source("GetFileUNC.R")
 
