@@ -10,7 +10,7 @@ TidyData.txt is a comma separated file, easily read by R and Excel.
 
 ## Column Variable ##
 
-Each feature is the mean of the raw values grouped over Activity.
+Only meaurment columns of type "-mean()" or "-std()" (NOT -meanFreq()) are selected. 
 
 Activity : "LAYING", "SITTING", "STANDING", "WALKING", "WALKING_DOWNSTAIRS", "WALKING_UPSTAIRS"
 SubjectID: From subject_train.txt and subject_test.txt
