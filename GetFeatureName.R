@@ -3,10 +3,10 @@
 ## Convert a Feature index to a feature name. Using "features.txt"
 ##
 ## USAGE:
-##  getFeatureName <- make.GetFeatureName(""./UCI HAR Dataset"")
+##  getFeatureName <- make.GetFeatureName("./UCI HAR Dataset")
 ##  featureName <- getFeatureName(1)
 ##
-##  featureNames <- getActivityName(c(1, 2, 5))
+##  featureNames <- GetFeatureName(c(1, 2, 5))
 ##
 ## DESIGN: Cache "features.txt" so repeat calls do not have to re-read file.
 source("GetFileUNC.R")

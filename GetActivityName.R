@@ -3,7 +3,7 @@
 ## Convert a Activity Enum to an Activity name. Using "activity_labels.txt"
 ##
 ## USAGE:
-##  getActivityName <- make.GetActivityName(""./UCI HAR Dataset"")
+##  getActivityName <- make.GetActivityName("./UCI HAR Dataset")
 ##  activityName <- getActivityName(1)
 ##
 ##  getActivityName(df$ActivityEnum)

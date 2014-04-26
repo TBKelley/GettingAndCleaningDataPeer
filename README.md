@@ -15,6 +15,10 @@ run_analysis.R
   |
   +-> GetXDataFrame.R
   |    |
+  |    +-> GetRequiredColumnIndexList.R
+  |    |    |
+  |    |    +-> GetFileUNC.R
+  |    |
   |    +-> GetFeatureName.R
   |    |    |
   |    |    +-> GetFileUNC.R
@@ -33,7 +37,7 @@ run_analysis.R
   |    |
   |    +-> GetFileUNC.R
   |
-  +-> MyUnsplit.R
+  +-> GetAveragesDataFrame.R
 
 ## run_analysis.R ##
 
@@ -141,6 +145,17 @@ dataType:    Type of data. Example: "test" or "train"
 Returns Data Frame.
 $Activity=Factor
 
+## GetRequiredColumnIndexList.R ##
+
+GetRequiredColumnIndexList(folderUNC)
+
+Get a list of "-mean()", "-std()" feature index.
+NOTE: -meanfreq() is NOT selected.
+
+USAGE:
+listRequiredColumnIndex <- GetRequiredColumnIndexList("./UCI HAR Dataset")
+
+
 ## GetFeatureName.R ##
 
 GetFeatureName(featureIndex)
@@ -184,29 +199,12 @@ filename:    Example: X_train.txt
 Returns verified file UNC
 
 
-## MyUnsplit.R ##
+## GetAveragesDataFrame.R ##
 
-MyUnsplifunction(listGroupBy)
+GetAveragesDataFrame(df, listGroupBy)
 
-Convert a lapply(split(df,f), function...) group by list structure back to a data.form
+Create a data frame of avarages of numeric columns grouped by columns in listGroupBy
 
-listGroupBy: Example:
-$LAYING
-tBodyAcc-mean()-X tBodyAcc-mean()-Y tBodyAcc-mean()-Z  tBodyAcc-std()-X  tBodyAcc-std()-Y  tBodyAcc-std()-Z 
-0.26864864       -0.01831773       -0.10743563       -0.96093241       -0.94350719       -0.94806930 
 
-$SITTING
-tBodyAcc-mean()-X tBodyAcc-mean()-Y tBodyAcc-mean()-Z  tBodyAcc-std()-X  tBodyAcc-std()-Y  tBodyAcc-std()-Z 
-0.27305961       -0.01268957       -0.10551700       -0.98344622       -0.93488056       -0.93898158 
 
-USAGE:
- listMeans <- lapply(s, function(x) colMeans(x[,2:dim(df)[2]]))
- dfTidyData <- MyUnsplit(listMeans)
-
-RETURN: data.frame example:
- GroupName tBodyAcc-mean()-X tBodyAcc-mean()-Z ...
- LAYING    0.26864864        -0.01831773       ...
- SITTING   0.26864864        -0.01268957       ...
-
-DESIGN: Cache "activity_labels.txt" so repeat calls do not have to re-read file.
 
